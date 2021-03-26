@@ -11,10 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.onome.models.DatabaseHandler;
 import com.example.onome.models.Names;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,15 +63,15 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("teste", "Nome 1: "+nameList.get(1).getNome());
                     if((databaseHandler.CheckIsDataAlreadyInDBorNot("tbNome", "NAME", nameList.get(0).getNome())) == false) {
                         databaseHandler.addName(
-                                nameList.get(0).getNome(),
-                                nameList.get(0).getRes().get(0).getFrequencia(),
-                                nameList.get(0).getRes().get(1).getFrequencia(),
-                                nameList.get(0).getRes().get(2).getFrequencia(),
-                                nameList.get(0).getRes().get(3).getFrequencia(),
-                                nameList.get(0).getRes().get(4).getFrequencia(),
-                                nameList.get(0).getRes().get(5).getFrequencia(),
-                                nameList.get(0).getRes().get(6).getFrequencia(),
-                                nameList.get(0).getRes().get(7).getFrequencia());
+                            nameList.get(0).getNome(),
+                            nameList.get(0).getRes().get(0).getFrequencia(),
+                            nameList.get(0).getRes().get(1).getFrequencia(),
+                            nameList.get(0).getRes().get(2).getFrequencia(),
+                            nameList.get(0).getRes().get(3).getFrequencia(),
+                            nameList.get(0).getRes().get(4).getFrequencia(),
+                            nameList.get(0).getRes().get(5).getFrequencia(),
+                            nameList.get(0).getRes().get(6).getFrequencia(),
+                            nameList.get(0).getRes().get(7).getFrequencia());
 
                     }
                     if((databaseHandler.CheckIsDataAlreadyInDBorNot("tbNome", "NAME", nameList.get(1).getNome())) == false){

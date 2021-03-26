@@ -109,3 +109,13 @@ public class ResultActivity extends AppCompatActivity {
         this.startActivity(myIntent);
     }
 }
+
+
+
+
+
+
+
+
+
+
