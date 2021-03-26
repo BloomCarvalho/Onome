@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Onome"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".TagActivity"></activity>
+        <activity android:name=".ResultActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
