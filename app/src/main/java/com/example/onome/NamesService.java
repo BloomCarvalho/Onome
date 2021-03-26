@@ -17,4 +17,6 @@ public interface NamesService {
     @Headers({"Accept: application/json"})
     Call<List<Names>> listNames(@Path("nome") String nome);
 
+    //Bloom
+
 }
