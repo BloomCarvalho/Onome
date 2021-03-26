@@ -11,6 +11,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.anychart.chart.common.dataentry.CategoryValueDataEntry;
+import com.anychart.chart.common.dataentry.DataEntry;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHandler extends SQLiteOpenHelper {
 
 
@@ -52,14 +58,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put("PERIO5", p5);
         cv.put("PERIO6", p6);
         cv.put("PERIO7", p7);
-        long result = db.insert("tbName", null, cv);
+        long result = db.insert("tbNome", null, cv);
         if(result == -1){
             Toast.makeText(context, "Erro", Toast.LENGTH_LONG).show();
         }
     }
     public boolean CheckIsDataAlreadyInDBorNot(String TableName, String dbfield, String fieldValue) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String Query = "SELECT * FROM " + TableName + " WHERE " + dbfield + " = " + fieldValue;
+        String Query = "SELECT * FROM " + TableName + " WHERE " + dbfield + " = '"+fieldValue+"'";
         Cursor cursor = db.rawQuery(Query, null);
         if(cursor.getCount() <= 0){
             cursor.close();
@@ -69,34 +75,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return true;
     }
 
+    public List<DataEntry> getNames(int time){
+        String p = String.valueOf(time);
+        final List<DataEntry> data = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT NAME, PERIO"+p+" FROM tbNome", null);
+        if (c.moveToFirst()){
+            do {
+                data.add(new CategoryValueDataEntry(c.getString(0), c.getString(0), c.getInt(1)));
+            } while(c.moveToNext());
+        }
+        c.close();
+        db.close();
+        return data;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

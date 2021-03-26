@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.onome.models.DatabaseHandler;
 import com.example.onome.models.Names;
 
 import java.lang.reflect.Array;
@@ -24,9 +27,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final List<Names> nameList = new ArrayList<Names>();
-    private boolean valid = true;
+
+    public static final List<Names> nameList = new ArrayList<Names>();
     private static ArrayList<String> message = new ArrayList<String>();
+    DatabaseHandler databaseHandler = new DatabaseHandler(MainActivity.this);
+    private boolean valid = true;
 
     TextView txtTitle;
     EditText txtName1;
@@ -56,8 +61,35 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    Log.d("teste", "Result: "+nameList.get(0).getNome());
-                    Log.d("teste", "Result: "+nameList.get(1).getNome());
+                    Log.d("teste", "Nome 0: "+nameList.get(0).getNome());
+                    Log.d("teste", "Nome 1: "+nameList.get(1).getNome());
+                    if((databaseHandler.CheckIsDataAlreadyInDBorNot("tbNome", "NAME", nameList.get(0).getNome())) == false) {
+                        databaseHandler.addName(
+                                nameList.get(0).getNome(),
+                                nameList.get(0).getRes().get(0).getFrequencia(),
+                                nameList.get(0).getRes().get(1).getFrequencia(),
+                                nameList.get(0).getRes().get(2).getFrequencia(),
+                                nameList.get(0).getRes().get(3).getFrequencia(),
+                                nameList.get(0).getRes().get(4).getFrequencia(),
+                                nameList.get(0).getRes().get(5).getFrequencia(),
+                                nameList.get(0).getRes().get(6).getFrequencia(),
+                                nameList.get(0).getRes().get(7).getFrequencia());
+
+                    }
+                    if((databaseHandler.CheckIsDataAlreadyInDBorNot("tbNome", "NAME", nameList.get(1).getNome())) == false){
+                        databaseHandler.addName(
+                                nameList.get(1).getNome(),
+                                nameList.get(1).getRes().get(0).getFrequencia(),
+                                nameList.get(1).getRes().get(1).getFrequencia(),
+                                nameList.get(1).getRes().get(2).getFrequencia(),
+                                nameList.get(1).getRes().get(3).getFrequencia(),
+                                nameList.get(1).getRes().get(4).getFrequencia(),
+                                nameList.get(1).getRes().get(5).getFrequencia(),
+                                nameList.get(1).getRes().get(6).getFrequencia(),
+                                nameList.get(1).getRes().get(7).getFrequencia());
+                    }
+                    go();
+
                 }
             }
         }, 3 * 1000);
@@ -74,18 +106,20 @@ public class MainActivity extends AppCompatActivity {
         names.enqueue(new Callback<List<Names>>() {
             @Override
             public void onResponse(Call<List<Names>> call, Response<List<Names>> response) {
+                String Newname = name;
+
                 if(!response.isSuccessful()){
                     Toast.makeText(MainActivity.this, "Insira dois nomes!", Toast.LENGTH_SHORT).show();
                 }else{
-                    if(response.body().isEmpty() || name.equals(" ") || name == null || name.equals("")){
+                    if(response.body().isEmpty() || Newname.equals(" ") || Newname == null || Newname.equals("")){
 
-                        if(name.equals(" ") || name == null || name.equals("") ){
+                        if(Newname.equals(" ") || (Newname == null) || Newname.equals("")){
                             valid = false;
                             message.add("Insira dois nomes!");
                         }
                         else{
                             valid = false;
-                            message.add("\""+name+"\" Não encontrado :(");
+                            message.add("\""+Newname+"\" Não encontrado :(");
                         }
                     }
                     else{
@@ -102,6 +136,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void skip(View view){
         Intent myIntent = new Intent(this, ResultActivity.class);
+        this.startActivity(myIntent);
+    }
+    public void go(){
+        Intent myIntent = new Intent(this, ResultActivity.class);
+        myIntent.putExtra("Time", 0);
+        myIntent.putExtra("Progress", 0);
         this.startActivity(myIntent);
     }
 }
