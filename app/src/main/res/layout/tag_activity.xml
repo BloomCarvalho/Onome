@@ -6,4 +6,107 @@
     android:layout_height="match_parent"
     tools:context=".TagActivity">
 
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="457dp"
+        android:layout_height="270dp"
+        android:background="@drawable/gradient"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/name2"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:background="@drawable/textbox"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.74"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.281" />
+
+    <TextView
+        android:id="@+id/name1"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:background="@drawable/textbox"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.281" />
+
+    <SeekBar
+        android:id="@+id/seek"
+        android:layout_width="289dp"
+        android:layout_height="53dp"
+        android:max="200"
+        android:maxHeight="3dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:progress="100"
+        android:progressDrawable="@drawable/seekbar_progress_style"
+        android:thumb="@drawable/thumb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <com.anychart.AnyChartView
+        android:id="@+id/any_chart_view_tag"
+        android:layout_width="389dp"
+        android:layout_height="387dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.216">
+    </com.anychart.AnyChartView>
+
+    <TextView
+        android:id="@+id/block"
+        android:layout_width="153dp"
+        android:layout_height="101dp"
+        android:background="@drawable/textbox"
+        android:gravity="center"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.865" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Visão Geral"
+        android:checked="true"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.791"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name2"
+        app:layout_constraintVertical_bias="0.181" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
